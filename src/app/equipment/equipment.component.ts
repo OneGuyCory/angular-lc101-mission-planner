@@ -6,6 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./equipment.component.css']
 })
 export class EquipmentComponent implements OnInit {
+    inactive: boolean = false;
+    buttonStatus: boolean = true;
+    closeToMax: boolean = true;
+    
    equipmentItems: object[] = [
        {name: 'Duct Tape', mass: 0.5},
        {name: 'Space Camera', mass: 20},
@@ -27,5 +31,15 @@ export class EquipmentComponent implements OnInit {
    ngOnInit() { }
 
    // Code your addItem function here:
+
+   addItem(item: object) : boolean {
+    this.cargoHold.push(item);
+    this.cargoMass = this.cargoMass + item['mass'];
+    if (this.cargoMass >= this.maximumAllowedMass) {
+      return true;
+    } else {
+      return false;
+    }
+   }
    
 }

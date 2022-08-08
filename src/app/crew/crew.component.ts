@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { memoryUsage } from 'process';
 
 @Component({
   selector: 'app-crew',
@@ -25,5 +26,22 @@ export class CrewComponent implements OnInit {
   ngOnInit() { }
 
   // Code the 'addCrewMember' function here:
+  addCrewMember(member: object) {
+    if (this.crew.includes(member)) {
+      this.inCrew = true;
+    } else {
+      this.inCrew = false;
+    }
+
+    if(this.crew.length < 3 && this.inCrew === false) {
+      this.crew.push(member);
+    } else if (this.inCrew === true) {
+      let index = this.crew.indexOf(member)
+      this.crew.splice(index, 1)
+
+    }
+
+   
+  }
 
 }
